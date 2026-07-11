@@ -2,9 +2,8 @@
 
 A 13-strategy algorithmic paper-trading platform running 24/7 on a single AWS EC2 instance. Every strategy runs as an isolated, supervised Linux service with its own brokerage account, risk limits, alerting channel, and log rotation — coordinated by a shared risk engine and a nightly analytics pipeline.
 
-**This is an infrastructure project.** The interesting part is not any single trading strategy — it's the operational engineering: running 15 unattended Python services against live market data, keeping them alive through failures, catching their bugs from their logs, and holding every strategy accountable to a passive benchmark. All trading is paper (simulated money, live market data) through the Alpaca API. No performance claims are made anywhere in this repo, deliberately: with weeks of live data, any results are statistical noise, and pretending otherwise is how retail algo projects lie to themselves.
+**This is an infrastructure project.** The interesting part is not any single trading strategy. I'm currently_running 15 unattended Python services against live market data, keeping them alive through failures, catching their bugs from their logs, and holding every strategy accountable to a passive benchmark. All trading is paper through the Alpaca API. No performance claims are made anywhere in this repo, deliberately: with weeks of live data, any results are statistical noise.
 
-Built and operated by a 19-year-old plant engineering supervisor who spends nights keeping conveyor systems alive at UPS Worldport and applied the same reliability mindset here.
 
 ## Architecture
 
@@ -51,7 +50,7 @@ flowchart TD
 
 ## The six bots in this repo
 
-Thirteen bots run in production, but several are controlled variants of each other (that's the experiment). The six here each demonstrate a distinct engineering pattern:
+Thirteen bots run in production, but several are controlled variants of each other. The six here each demonstrate a distinct engineering pattern:
 
 | Bot | Pattern it demonstrates |
 |---|---|
@@ -78,7 +77,7 @@ Thirteen bots run in production, but several are controlled variants of each oth
 
 ## Reliability lessons (the short version)
 
-The full war stories are in [`docs/lessons-learned.md`](docs/lessons-learned.md). Highlights:
+The full error stories are in [`docs/lessons-learned.md`](docs/lessons-learned.md). Highlights:
 
 - **A frozen indicator that only froze sometimes.** Bars fetched with `date.today()` and a small limit returned *oldest-first* data from the provider — the bot was trading on stale closes. The fix (anchor the window to `now(UTC) - 5 days`, request large, slice newest) is now the standard pattern in every bot.
 - **CRLF as a production hazard.** Any file that transits a Windows machine can pick up `\r` line endings that silently corrupt env vars (webhook URLs that 400, keys that fail auth). `sed -i 's/\r$//'` is now a mandatory deployment step.
