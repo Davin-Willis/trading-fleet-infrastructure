@@ -1,0 +1,16 @@
+[Unit]
+Description=Momentum Rotation Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/bot_momentum
+ExecStart=/bin/bash -c '/usr/bin/python3 -u /home/ubuntu/bot_momentum/momentum_bot.py >> /home/ubuntu/bot_momentum/momentum.log 2>&1'
+Restart=always
+RestartSec=10
+MemoryMax=200M
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,16 @@
+[Unit]
+Description=Passive Benchmark Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/bot_benchmark
+ExecStart=/bin/bash -c '/usr/bin/python3 -u /home/ubuntu/bot_benchmark/benchmark_bot.py >> /home/ubuntu/bot_benchmark/benchmark.log 2>&1'
+Restart=always
+RestartSec=10
+MemoryMax=150M
+
+[Install]
+WantedBy=multi-user.target

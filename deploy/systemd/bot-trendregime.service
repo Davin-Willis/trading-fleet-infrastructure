@@ -1,0 +1,16 @@
+[Unit]
+Description=Trend Regime Clone (regime-gated trend bot)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/bot_trendregime
+ExecStart=/bin/bash -c '/usr/bin/python3 -u /home/ubuntu/bot_trendregime/bot.py >> /home/ubuntu/bot_trendregime/trendregime.log 2>&1'
+Restart=always
+RestartSec=10
+MemoryMax=300M
+
+[Install]
+WantedBy=multi-user.target

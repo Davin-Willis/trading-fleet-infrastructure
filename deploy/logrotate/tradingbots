@@ -1,0 +1,25 @@
+/home/ubuntu/trading_bot/options.log
+/home/ubuntu/bot_meanrev/meanrev.log
+/home/ubuntu/bot_orb/orb.log
+/home/ubuntu/bot_overnight/overnight.log
+/home/ubuntu/bot_momentum/momentum.log
+/home/ubuntu/bot_credit/credit.log
+/home/ubuntu/bot_defense/defense.log
+/home/ubuntu/bot_pairs/pairs.log
+/home/ubuntu/bot_benchmark/benchmark.log
+/home/ubuntu/bot_trendregime/trendregime.log
+/home/ubuntu/allocator/allocator.log
+/home/ubuntu/bot_vwap/vwap.log
+/home/ubuntu/bot_gap/gap.log
+/home/ubuntu/bot_vrp/vrp.log
+{
+    daily
+    rotate 21
+    maxsize 20M
+    missingok
+    notifempty
+    compress
+    delaycompress
+    copytruncate
+    su ubuntu ubuntu
+}

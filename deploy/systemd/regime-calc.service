@@ -1,0 +1,16 @@
+[Unit]
+Description=Market Regime Calculator
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/regime_calc
+ExecStart=/bin/bash -c '/usr/bin/python3 -u /home/ubuntu/regime_calc/regime_calculator.py >> /home/ubuntu/regime_calc/regime.log 2>&1'
+Restart=always
+RestartSec=10
+MemoryMax=200M
+
+[Install]
+WantedBy=multi-user.target

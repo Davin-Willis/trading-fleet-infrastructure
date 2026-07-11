@@ -1,0 +1,16 @@
+[Unit]
+Description=Trend Confirmation Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/trading_bot
+ExecStart=/bin/bash -c '/usr/bin/python3 -u /home/ubuntu/trading_bot/bot.py >> /home/ubuntu/trading_bot/options.log 2>&1'
+Restart=always
+RestartSec=10
+MemoryMax=300M
+
+[Install]
+WantedBy=multi-user.target

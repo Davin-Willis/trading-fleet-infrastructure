@@ -1,0 +1,12 @@
+.env
+*.env
+!.env.example
+*.log*
+*state*.json
+*history*.json
+*stats*.json
+tokens.json
+spread_log.csv
+__pycache__/
+venv/
+*.xlsx
