@@ -4,7 +4,6 @@ A 15-strategy algorithmic paper-trading platform spanning equities, options, and
 
 **This is an infrastructure project.** The interesting part is not any single trading strategy — it's the operational engineering: running 17 unattended Python services against live market data, keeping them alive through failures, catching their bugs from their logs, and holding every strategy accountable to a passive benchmark. All trading is paper (simulated money, live market data) through the Alpaca API. No performance claims are made anywhere in this repo, deliberately: with weeks of live data, any results are statistical noise, and pretending otherwise is how retail algo projects lie to themselves.
 
-Built and operated by a 19-year-old plant engineering supervisor who spends nights keeping conveyor systems alive at UPS Worldport and applied the same reliability mindset here.
 
 ## Architecture
 
